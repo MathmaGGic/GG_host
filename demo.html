@@ -1,0 +1,56 @@
+
+
+<!DOCTYPE html>
+<html> 
+<head> 
+<title>GeoGebra and JavaScript</title> 
+<script src="navigation.js"></script>
+<script src="https://www.geogebra.org/apps/deployggb.js"></script>
+</head> 
+ 
+<body> 
+ 		<div class="contentBox" id="contentBox">
+      <h1>Applets comunicados</h1> 
+ 
+      <p class="text"><br>Usar comandos javascript permite la comunicacion entre applets
+Hay que relacionar el comando del applet con el identificador de la actividad en GG<br>
+Ver <a class="inlineLink" href="https://geogebra.github.io/docs/reference/en/GeoGebra_Apps_API/">GeoGebra JavaScript API</a> para una descripcion de los métodos
+      </p> 
+<p>Cambia los valores en el primer applet para cambiar los colores del segundo</p> 
+
+<div id="ggbAppletsource"></div>
+<div id="ggbAppletdestiny"></div>
+
+<script type="text/javascript"> 
+ 
+var parameter_source={
+"id": "ggbAppletsource",
+"material_id":"sevgytme"
+}
+var parameter_destiny={
+"id": "ggbAppletdestiny",
+"material_id":"y4nrfphk"
+}
+
+// is3D=is 3D applet using 3D view, AV=Algebra View, SV=Spreadsheet View, CV=CAS View, EV2=Graphics View 2, CP=Construction Protocol, PC=Probability Calculator, DA=Data Analysis, FI=Function Inspector, PV=Python, macro=Macro View
+var views = {'is3D': 0,'AV': 1,'SV': 0,'CV': 0,'EV2': 0,'CP': 0,'PC': 0,'DA': 0,'FI': 0,'PV': 0,'macro': 0};
+
+var applet_s = new GGBApplet(parameter_source,true);
+              
+    	//  when used with Math Apps Bundle, uncomment this:
+    	//  applet.setHTML5Codebase('GeoGebra/HTML5/5.0/web/');
+
+var applet_d = new GGBApplet(parameter_destiny,true);
+              
+    //  when used with Math Apps Bundle, uncomment this:
+    //  applet2.setHTML5Codebase('GeoGebra/HTML5/5.0/web/');
+
+window.onload = function() {
+	applet_s.inject('ggbAppletsource');
+	applet_d.inject('ggbAppletdestiny');
+};
+
+</script> 
+     </div>
+</body> 
+</html> 
