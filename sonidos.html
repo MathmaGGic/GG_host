@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+<title>GeoGebra and JavaScript</title> 
+<script src="navigation.js"></script>
+<script src="https://www.geogebra.org/apps/deployggb.js"></script>
+</head> 
+ 
+<body> 
+ <div class="contentBox" id="contentBox">
+      <h1>GeoGebra Playing Applet  </h1> 
+ 
+      <p class="text"><br>Using JavaScript listener functions allows communication with GeoGebra. <br>
+See <a class="inlineLink" href="https://geogebra.github.io/docs/reference/en/GeoGebra_Apps_API/">GeoGebra JavaScript API</a> for a syntax description of the used methods.
+      </p> 
+<p></p> 
+
+<div id="ggbApplet"></div>
+ 
+<script type="text/javascript"> 
+
+ 
+function ggbOnInit(param) {
+globalThis.sonido = new Audio('https://cdn.geogebra.org/resource/b393v4y8/WeQIDafcPvuv7Skm/material-b393v4y8.mp3');
+
+	ggbApplet.registerObjectClickListener("button1","tocar");
+	ggbApplet.registerObjectClickListener("button2","pausar");
+	ggbApplet.registerObjectClickListener("button3","parar");
+	ggbApplet.registerObjectClickListener("button4","volumenmas");
+	ggbApplet.registerObjectClickListener("button5","volumenmenos");
+	ggbApplet.registerObjectUpdateListener("selecc", "cambiar")
+}
+ 
+function tocar(){
+	globalThis.sonido.play();
+}
+function cambiar(param){
+	globalThis.sonido.pause();
+	globalThis.sonido.currentTime=0;
+enlace=ggbApplet.getValueString(param)+"";
+globalThis.sonido = new Audio(enlace);
+}
+function pausar(){
+	globalThis.sonido.pause();
+}
+function parar(){
+	globalThis.sonido.pause();
+	globalThis.sonido.currentTime=0;
+}
+function volumenmas(){
+	globalThis.sonido.volume+=0.1;
+}
+function volumenmenos(){
+	globalThis.sonido.volume-=0.1;
+}
+
+
+var parameters = {
+"id": "ggbApplet",
+"useBrowserForJS":true,
+"material_id":"uw7te5qb"
+}
+var applet = new GGBApplet(parameters,true);
+      
+window.onload = function() {
+	applet.inject('ggbApplet');
+};
+
+</script> 
+     </div>
+</body> 
+</html> 
