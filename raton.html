@@ -21,9 +21,14 @@ See <a class="inlineLink" href="https://geogebra.github.io/docs/reference/en/Geo
 
  
 function ggbOnInit(param) {
-	 if (document.getElementsByClassName("ApplicationPanel").length > 0) document.getElementsByClassName("ApplicationPanel")[0].addEventListener("mousemove", handleMouseMove);
-    else document.getElementsByClassName("GeoGebraFrame")[0].addEventListener("mousemove", handleMouseMove);
+	const appPanel = document.querySelector(".ApplicationPanel");
+const geoFrame = document.querySelector(".GeoGebraFrame");
 
+const target = appPanel || geoFrame;
+
+if (target) {
+    target.addEventListener("mousemove", handleMouseMove);
+}
 }
  
 function handleMouseMove(event) {
