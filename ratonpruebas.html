@@ -35,7 +35,7 @@ function handleMouseMove(event) {
     event = event || window.event; // IE-ism
     ggbApplet.setValue("mouseXporcentaje", ((event.offsetX - 5) / event.target.offsetWidth)); /* 5px to the left, so you can still click on something */
     ggbApplet.setValue("mouseYporcentaje", ((event.offsetY) / event.target.offsetHeight));
-
+ggbApplet.setTextValue("T", target)
 }
 
 var parameters = {
